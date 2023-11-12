@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=UTF-8>
+    <title>drag&amp;drop</title>
+    <style>
+        body {
+         position: relative;
+        }
+        img {
+         position: absolute;
+         cursor: move;
+        }
+        </style>
+  </head>
+  <body style='min-height: 100vh'>
+<img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
+<img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
+<img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
+<img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>
+
+<script>
+   let pos = document.querySelectorAll('img');
+  let zIndex=0
+  let selectedElement = null;
+let isDragging = false;
+
+const onMouseDown = (event) => {
+ if (event.target.tagName === 'IMG') {
+    selectedElement = event.target;
+    isDragging = true;
+    selectedElement.style.zIndex=zIndex++
+ }
+};
+
+const onMouseMove = (event) => {
+ if (isDragging) {
+    selectedElement.style.left = event.pageX - selectedElement.width / 2 + 'px';
+    selectedElement.style.top = event.pageY - selectedElement.height / 2 + 'px';
+ }
+};
+
+const onMouseUp = () => {
+ if (isDragging) {
+    selectedElement = null;
+    isDragging = false;
+ }
+};
+
+document.body.addEventListener('mousedown', onMouseDown);
+document.body.addEventListener('mousemove', onMouseMove);
+document.body.addEventListener('mouseup', onMouseUp);
+     
+
+</script>
+  </body>
+</html>
