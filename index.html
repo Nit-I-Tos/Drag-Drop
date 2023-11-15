@@ -25,6 +25,15 @@
   let selectedElement = null;
 let isDragging = false;
 
+for(i=0;i<pos.length;i++){
+   pos[0].style.left='0px'
+   pos[1].style.left='150px'
+   pos[1].style.top='110px'
+   pos[2].style.left='250px'
+   pos[2].style.top='40px'
+   pos[3].style.left='380px'
+}
+
 const onMouseDown = (event) => {
  if (event.target.tagName === 'IMG') {
     selectedElement = event.target;
