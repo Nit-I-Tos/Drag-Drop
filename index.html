@@ -23,23 +23,28 @@
 <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>
 
 <script>
-   let pos = document.querySelectorAll('img');
+   window.addEventListener('load', (event)=>{
+      let pos = document.querySelectorAll('img');
   let zIndex=1
   let selectedElement = null;
 let isDragging = false;
 let div = document.createElement('div')
 div.style.display='flex'
 div.style.alignItems='flex-end'
-div.style.height='250px'
+div.style.height='260px'
 document.body.appendChild(div)
 
 for(let i=0;i<pos.length;i++){
    div.appendChild(pos[i])
+   if(!pos[i].width)
+   pos[i].setAttribute('style', 'width:')
    
 }
 for(let i=0;i<pos.length;i++){
    pos[0].style.left=0+'px'
    pos[i].style.left+=pos[i].width*1.7+'px'
+
+
    
 }
 
@@ -70,7 +75,9 @@ const onMouseUp = () => {
 document.body.addEventListener('mousedown', onMouseDown);
 document.body.addEventListener('mousemove', onMouseMove);
 document.body.addEventListener('mouseup', onMouseUp);
-     
+   
+   })
+  
 
 </script>
   </body>
