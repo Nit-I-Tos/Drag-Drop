@@ -8,7 +8,6 @@
          position: relative;
         }
         img {
-         position: absolute;
          cursor: move;
          
          
@@ -23,30 +22,29 @@
 <img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>
 
 <script>
-   window.addEventListener('load', (event)=>{
-      let pos = document.querySelectorAll('img');
+   let pos = document.querySelectorAll('img');
   let zIndex=1
   let selectedElement = null;
-let isDragging = false;
-let div = document.createElement('div')
-div.style.display='flex'
-div.style.alignItems='flex-end'
-div.style.height='260px'
-document.body.appendChild(div)
+  let isDragging = false;
+ var toLeft = []
+ var toTop = []
+   window.addEventListener('load', (event)=>{
+   
+  
 
 for(let i=0;i<pos.length;i++){
-   div.appendChild(pos[i])
-   if(!pos[i].width)
-   pos[i].setAttribute('style', 'width:')
-   
+   toLeft[i] = pos[i].offsetLeft
+   toTop[i] = pos[i].offsetTop
 }
-for(let i=0;i<pos.length;i++){
-   pos[0].style.left=0+'px'
-   pos[i].style.left+=pos[i].width*1.7+'px'
+for(i=0; i<pos.length;i++){
+   pos[i].style.position='absolute'
+   pos[i].style.left=toLeft[i]+'px'
+   pos[i].style.top=toTop[i]+'px'
+}
 
 
-   
-}
+
+
 
 
 
@@ -55,6 +53,7 @@ const onMouseDown = (event) => {
     selectedElement = event.target;
     isDragging = true;
     selectedElement.style.zIndex=zIndex++
+    document.body.addEventListener('mousemove', onMouseMove);
  }
 };
 
@@ -69,14 +68,15 @@ const onMouseUp = () => {
  if (isDragging) {
     selectedElement = null;
     isDragging = false;
+    document.body.removeEventListener('mousemove', onMouseMove);
  }
 };
 
 document.body.addEventListener('mousedown', onMouseDown);
-document.body.addEventListener('mousemove', onMouseMove);
+
 document.body.addEventListener('mouseup', onMouseUp);
    
-   })
+})
   
 
 </script>
