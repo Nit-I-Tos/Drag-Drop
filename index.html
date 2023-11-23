@@ -50,6 +50,7 @@ for(i=0; i<pos.length;i++){
 
 const onMouseDown = (event) => {
  if (event.target.tagName === 'IMG') {
+   event.preventDefault()
     selectedElement = event.target;
     isDragging = true;
     selectedElement.style.zIndex=zIndex++
